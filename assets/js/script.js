@@ -6,7 +6,7 @@ function gatherUserInput(){
   var lowerCase = "abcdefghijklmnopqrstuvwxyz"
   var upperCase = "abcdefghijklmnopqrstuvwxyz"
   upperCase = upperCase.toUpperCase()
-  var specChar = "!@#$%"
+  var specChar = "!@#$%^&*()_+"
   var numChar = "1234567890"
 
   var caseCharCombined = ""
@@ -19,7 +19,7 @@ function gatherUserInput(){
    // if user enters a value that does not meet the desired length the function will notify the user and restart the getUserInput function until the conditions are met.
     }else{
       alert("whoa whoa whoa, that's too many characters!\nplease enter a length value between 8 and 128.")
-      gatherUserInput()
+      return gatherUserInput()
     }
     
     // prompting the user for their requirments for the password
@@ -45,7 +45,7 @@ function gatherUserInput(){
     // option to allow for Specail Characters
     var userSpecChar = window.confirm("Would you like to allow special characters?");
       if (userSpecChar) {
-    winodw.alert("special characters WILL be included")
+    window.alert("special characters WILL be included")
     caseCharCombined = caseCharCombined + specChar
       }else{
     window.alert("special characters WILL Not ot be included")
@@ -54,13 +54,14 @@ function gatherUserInput(){
     // option to allow for Numeric characters
     var userNumChar = window.confirm ("Would you like to allow numeric characters?");
       if (userNumChar) {
-    winodw.alert("numeric characters WILL be included")
+    window.alert("numeric characters WILL be included")
     caseCharCombined = caseCharCombined + numChar 
       }else{
     window.alert("numeric characters WILL Not ot be included")
     }
 
-    generatePassword(caseCharCombined, passwordLength); 
+    return generatePassword(caseCharCombined, passwordLength); 
+    
 
   }
 
@@ -74,8 +75,9 @@ function generatePassword(caseCharCombined, passwordLength) {
   for (var i = 0; i < passwordLength; i++) {
     var indexNum = Math.floor(Math.random() * caseCharCombined.length)
   endPassword =  endPassword + caseCharCombined[indexNum] 
-  return endPassword;
+  console.log(endPassword)
   }
+  return endPassword;
 }
 // End generate password function
 
@@ -96,6 +98,5 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
 
 //END
